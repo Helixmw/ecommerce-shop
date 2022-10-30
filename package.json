@@ -1,0 +1,19 @@
+{
+  "name": "onlineshop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-regular-svg-icons": "^6.2.0",
+    "@fortawesome/vue-fontawesome": "^3.0.1",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "~4.5.15",
+    "@vue/compiler-sfc": "^3.0.0"
+  }
+}
