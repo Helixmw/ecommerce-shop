@@ -22,11 +22,35 @@
       <Blank v-else/>
     </div></div>
    </div>
+   <div class="container-2">
+    <div class="products">
+      <div class="section">
+        <div class="cat">MEN</div>
+        <div class="display">
+          <Men v-show="true" :men="formen" @switchtopreview="changeToPreview"/>
+        </div>
+      </div>
+      <div class="section">
+        <div class="cat">WOMEN</div>
+        <div class="display">
+          <Women v-show="true" :women="forwom"  @switchtopreview="changeToPreview"/>
+        </div>
+      </div>
+      <div class="section">
+        <div class="cat">JEWELERY</div>
+        <div class="display">
+          <Jewels v-show="true" :jewels="forjwls"  @switchtopreview="changeToPreview"/>
+        </div>
+      </div>
+    </div>
+   </div>
+   <BottomNav/>
   </div>
 </template>
 
 <script>
 import Nav from './components/Nav.vue'
+import BottomNav from './components/BottomNav.vue'
 import Blank from './components/Blank.vue'
 import Men from './components/Men.vue'
 import Women from './components/Women.vue'
@@ -40,6 +64,7 @@ export default {
     Women,
     Jewels,
     Description,
+    BottomNav,
     Blank
   },
   data(){
@@ -147,6 +172,18 @@ this.displayShop();
 </script>
 
 <style>
+:root{
+  --main-color:rgb(218, 127, 195);
+  --main-light:rgb(235, 170, 222);
+  --main-dark:rgb(170, 32, 142);
+  --nav:rgba(255,255,255,0.7);
+  --blur:blur(8px);
+  --white:white;
+  --grey:rgb(114, 114, 114);
+  --light-grey:rgb(241, 241, 241);
+  --foreground:black;
+}
+
 @font-face{
   font-family: 'OpenSans';
   src: url('./assets/fonts/OpenSans-Regular.ttf');
@@ -171,19 +208,22 @@ body{
   background-color: rgb(253, 237, 250);
 }
 
-::-webkit-scrollbar {
+::-webkit-scrollbar{
+  opacity:0!important;
   width: 6px;
 }
 
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track{
+  opacity:0;
   background: #f1f1f1;
   border-radius:4px;
 }
 
 
 ::-webkit-scrollbar-thumb {
+  
   border-radius:4px;
-  background: rgb(148, 148, 148);
+  background:var(--main-color);
 }
 
 .preview{
@@ -204,7 +244,7 @@ body{
   padding-right:0.1rem;
   overflow-x:auto;
   
-  height:33rem;
+  min-height:33rem;
   width:22rem;
   margin-left:0.4rem;
   margin-right:0.4rem;
@@ -258,8 +298,55 @@ body{
   
 }
 
+.container-2{
+    display:none;
+  }
+
 @media screen and (max-width: 768px){
- 
+  .container-1{
+    display:none;
+  }
+
+  .display{
+    background:var(--white);
+    max-width:100%;
+    padding-top:0.5rem;
+    padding-bottom:0.5rem;
+    overflow-y:none;
+        overflow-x:auto;
+  }
+
+  .section{
+    margin-bottom:1rem;
+  }
+
+  .cat{
+    color:var(--grey);
+    font-weight:bold;
+    margin-left:0.5rem;
+    margin-bottom:0.3rem;
+  }
+
+  .container-2{
+    display:block;
+    margin-top:4rem;
+  }
+  
+  .preview{
+    display:none;
+  }
+
+  .list{
+  margin-left:0rem;
+  background:transparent;
+  }
+
+  .scroll{
+    padding:0rem;
+    margin:0rem;
+    overflow-x:none!important;
+    overflow-y:none!important;
+  }
 }
 
 </style>
