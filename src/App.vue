@@ -177,11 +177,14 @@ this.displayShop();
   --main-light:rgb(235, 170, 222);
   --main-dark:rgb(170, 32, 142);
   --nav:rgba(255,255,255,0.7);
+  --background:rgb(107, 46, 95);
+  --background-mobile:rgb(255, 215, 247);
   --blur:blur(8px);
   --white:white;
   --grey:rgb(114, 114, 114);
   --light-grey:rgb(241, 241, 241);
   --foreground:black;
+  --gradient:linear-gradient(128deg, rgba(60,5,60,1) 17%, rgba(181,71,186,1) 70%);
 }
 
 @font-face{
@@ -205,22 +208,22 @@ this.displayShop();
 body{
   margin:0;
   font-family:OpenSans;
-  background-color: rgb(253, 237, 250);
+  background-color:var(--background);
 }
 
-::-webkit-scrollbar{
+body::-webkit-scrollbar{
   opacity:0!important;
   width: 6px;
 }
 
-::-webkit-scrollbar-track{
+body::-webkit-scrollbar-track{
   opacity:0;
   background: #f1f1f1;
   border-radius:4px;
 }
 
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   
   border-radius:4px;
   background:var(--main-color);
@@ -302,7 +305,16 @@ body{
     display:none;
   }
 
+  
+
 @media screen and (max-width: 768px){
+  body{
+    background:white;
+  }
+
+  
+
+
   .container-1{
     display:none;
   }
@@ -317,14 +329,15 @@ body{
   }
 
   .section{
-    margin-bottom:1rem;
+    margin-bottom:0.3rem;
   }
 
   .cat{
     color:var(--grey);
     font-weight:bold;
+    font-size:0.9rem;
     margin-left:0.5rem;
-    margin-bottom:0.3rem;
+    margin-bottom:0rem;
   }
 
   .container-2{

@@ -1,5 +1,6 @@
 <template>
-    <div class="nav">
+    <div></div>
+    <!-- <div class="nav">
         <div class="bx"></div>
         <div class="bx">
             <div class="icon">
@@ -8,7 +9,7 @@
             </div>
         </div>
         <div class="bxx"></div>
-    </div>
+    </div> -->
 </template>
 <script>
 export default {

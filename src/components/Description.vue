@@ -80,6 +80,7 @@ export default {
     display:flex;
     height:18rem;
     width:41rem;
+    
 }
 
 .imge{

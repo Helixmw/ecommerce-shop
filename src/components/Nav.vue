@@ -1,6 +1,5 @@
 <template>
   <div class="content">
-
     <div class="nav">
       <div class="header">
         <div class="logo">DRESS</div>
@@ -71,6 +70,7 @@ export default {
     top:0;
     left:0;
     right:0;
+    z-index:1;
 }
 
 .logo{

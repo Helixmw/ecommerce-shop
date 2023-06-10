@@ -16,6 +16,12 @@
               </div>
           </div>
       </div>
+      <div class="mobile">
+        <div class="more">
+
+            See More
+        </div>
+    </div>
     </div>
   </template>
   
@@ -91,8 +97,35 @@
     border-bottom:1px var(--light-grey) solid;
 }
 
+.more{
+    width:11rem;
+    height:14.2rem;
+    color:white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-transform:uppercase;
+    font-family:Bebas;
+    font-size:1.7rem;
+}
+.mobile{
+    display:none;
+    
+    background:var(--gradient);
+    border:0px;
+    border-top-left-radius:4px;
+    border-bottom-left-radius:4px;
+    margin-right:2px;
+   
+    
+}
+
 
 @media screen and (max-width: 768px){
+
+    .mobile{
+        display:block;   
+    }
     .content{
         max-width:100%;
         display:inline-flex;
