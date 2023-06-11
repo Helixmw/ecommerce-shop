@@ -1,6 +1,6 @@
 <template>
     <div class="content">
-      <div v-for="mn in jewels" :key="mn.id" class="card" @click="toPreview(mn.id,mn.title,mn.cat,mn.des,mn.price,mn.image)">
+      <div v-for="mn in jewels" :key="mn.id" class="card" @click="toPreview(mn.id,mn.title,mn.cat,mn.des,mn.price,mn.image,mn.rating)">
           <div class="image">
   
               <img :src="mn.image" alt="" class="img">
@@ -12,7 +12,12 @@
               </div>
               <div class="box1">
   
-                  <div class="rate"><font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /></div>
+                  <div class="rate">
+                    <div class="level">
+                        <div class="progress" :style="{ 'width':mn.rating / total * 100 + '%' }"></div>
+                    </div>
+                    <div class="rating">{{ mn.rating }}</div>
+                  </div>
               </div>
           </div>
       </div>
@@ -30,8 +35,13 @@
       props: {
           jewels:Array
       },
+      data(){
+        return{
+            total:5
+        }
+    },
       methods: {
-        toPreview(id,title,cat,des,price,image){
+        toPreview(id,title,cat,des,price,image,rating){
             let data = {
                 'id':id,
                 'title':title,
@@ -39,7 +49,8 @@
                 'des':des,
                 'price':price,
                 'image':image,
-                'visible':true
+                'visible':true,
+                'rating':rating
             };
             this.$emit('switchtopreview', data);
             

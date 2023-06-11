@@ -1,6 +1,6 @@
 <template> 
   <div class="content">
-    <div v-for="mn in men" :key="mn.id" class="card" @click="toPreview(mn.id,mn.title,mn.cat,mn.des,mn.price,mn.image)">
+    <div v-for="mn in men" :key="mn.id" class="card" @click="toPreview(mn.id,mn.title,mn.cat,mn.des,mn.price,mn.image,mn.rating)">
         <div class="image">
 
             <img :src="mn.image" alt="" class="img">
@@ -11,7 +11,14 @@
         <div class="price">${{mn.price}}</div>
             </div>
             <div class="box1">
-                <div class="rate"><font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /></div>
+                <div class="rate">
+                    <div class="level">
+                        <div class="progress" :style="{ 'width':mn.rating / total * 100 + '%' }"></div>
+                    </div>
+                    <div class="rating">{{ mn.rating }}</div>
+                   
+                    
+                </div>
             </div>
         </div>
     </div>
@@ -31,8 +38,13 @@ export default {
     props: {
         men:Array
     },
+    data(){
+        return{
+            total:5
+        }
+    },
     methods: {
-        toPreview(id,title,cat,des,price,image){
+        toPreview(id,title,cat,des,price,image,rating){
             let data = {
                 'id':id,
                 'title':title,
@@ -40,20 +52,45 @@ export default {
                 'des':des,
                 'price':price,
                 'image':image,
-                'visible':true
+                'visible':true,
+                'rating':rating
             };
             this.$emit('switchtopreview', data);
             
         }
     }
+
 }
 </script>
 
 <style scoped>
 
+
+
+.stars-outter{
+    position:relative;
+    display:inline-block;
+}
+
+.stars-inner{
+    position:absolute;
+    top:0;
+    left:0;
+    white-space:nowrap;
+    overflow: hidden;
+    width:0;
+}
+
+.stars-outter::before{
+    content:"\f005";
+    font-family:"Font Awesome Free";
+    font-weight:900;
+    color:var(--main-color);
+}
 .rate{
     letter-spacing:0px;
     color:var(--main-color);
+    display:flex;
 }
 .card{
     cursor: pointer;
@@ -123,6 +160,8 @@ export default {
 
 
 @media screen and (max-width: 768px){
+
+
 
     .mobile{
         display:block;   

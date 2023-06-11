@@ -1,6 +1,37 @@
 <template>
  <div class="">
   <Nav/>
+  <div class="item-preview" v-show="preview">
+    <div class="item-modal">
+      <div class="close" @click="closeModal()">Close</div>
+      <div class="image-frame">
+        <img :src="details.image" class="item-image" style="height:8rem;"/>
+      </div>
+      <div class="item-details">
+
+        <div class="info">
+
+          <div class="item-name">{{ details.title }}</div>
+          <div class="price">${{ details.price }}</div>
+        </div>
+
+        <div class="ratings">
+          <div class="item-rating">
+            <div class="level">
+              <div class="item-progress" :style="{ 'width': details.rating / total * 100 + '%' }"></div>
+            </div>
+            <div class="rating">{{ details.rating }}</div>
+          
+          </div>
+        </div>
+        
+
+      </div>
+      <div class="buttons">
+          <a href="#" class="button">Buy it</a>
+        </div>
+    </div>
+  </div>
    <div class="container-1">
     <div class="list">
       <div class="tabs">
@@ -77,7 +108,10 @@ export default {
       formen : [],
       forwom : [],
       forjwls : [],
-      details: {}
+      details: {},
+      preview:false,
+      total:5
+      
     }
   },
   mounted(){
@@ -87,8 +121,14 @@ this.displayShop();
   methods:{
     changeToPreview(data){
       this.descr = data.visible;
-      this.details = data;
+      this.details = data;  
+      this.preview = true;
 
+
+    },
+    closeModal(){
+      //this.details = null;
+      this.preview = false;
     },
     displayShop(){
       let mn = document.getElementById('men');
@@ -151,7 +191,8 @@ this.displayShop();
           'des': res[i].description,
           'price': res[i].price,
           'cat': res[i].category,
-          'image':res[i].image
+          'image':res[i].image,
+          'rating':res[i].rating.rate
         }
         this.sortShop(data); 
        
@@ -182,9 +223,13 @@ this.displayShop();
   --blur:blur(8px);
   --white:white;
   --grey:rgb(114, 114, 114);
+  --lightGrey:rgb(192, 190, 190);
   --light-grey:rgb(241, 241, 241);
   --foreground:black;
   --gradient:linear-gradient(128deg, rgba(60,5,60,1) 17%, rgba(181,71,186,1) 70%);
+  --gradient-two:linear-gradient(230deg, rgba(60,5,60,1) 17%, rgba(181,71,186,1) 70%);
+  --main-dim:rgba(60,5,60,1);
+  --dim:rgba(0,0,0,0.8);
 }
 
 @font-face{
@@ -195,6 +240,61 @@ this.displayShop();
 @font-face {
   font-family: 'Bebas';
   src: url('./assets/fonts/BebasNeue-Regular.ttf');
+}
+
+.item-name{
+  width:10rem;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size:1.1rem;
+    font-weight: bold;
+    margin-bottom:0.3rem;
+}
+
+.close{
+  cursor:pointer;
+  margin:0.5rem;
+  text-align:right;
+  text-decoration:none;
+  color:var(--main-dark);
+  font-weight:bold;
+}
+
+.item-rating{
+  letter-spacing:0px;
+    color:var(--main-color);
+    display:flex;
+}
+
+.item-modal{
+  background:white;
+  border-radius:4px;
+  width:18rem;
+  
+  display:flex;
+  flex-direction:column;
+  padding:0.5rem;
+}
+
+.image-frame{
+  /*border:1px solid black;*/
+  margin:0.4rem;
+  display:flex;
+  justify-content:center;
+}
+
+.item-preview{
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:1;
+  position:absolute;
+  background:var(--dim);
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
 }
 
 .mainbg{
@@ -306,8 +406,80 @@ body::-webkit-scrollbar-thumb {
   }
 
   
+  .rating{
+    font-weight:bold;
+    color:var(--main-dim);
+}
+
+.level{
+
+    width:8rem;
+    margin-right:5px;
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.item-progress{
+    background:var(--gradient-two);
+    height:5px;
+    border-radius:100px;
+}
+
+.progress{
+    background:var(--gradient-two);
+    height:5px;
+    border-radius:100px;
+}
+  
+.price{
+    color:var(--main-dark);
+    font-weight: bold;
+}
+
+
+.item-details{
+  display:flex;
+  align-items:flex-end;
+  margin:0.5rem;
+}
+
+.button{
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--main-dark);
+  font-weight:bold;
+  border:1px solid var(--main-dark);
+  padding:6px;
+  font-size:0.8rem;
+  border-radius:4px;
+}
+
+.buttons{
+  margin:0.5rem;
+  display:flex;
+  justify-content:flex-end;
+  
+}
 
 @media screen and (max-width: 768px){
+
+
+  .item-rating{
+        display:flex;
+        justify-content: flex-end;
+    }
+
+  .level{   
+    width:5rem;
+}
+
+
+  .item-preview{
+    display:flex;
+  }
+ 
+
   body{
     background:white;
   }

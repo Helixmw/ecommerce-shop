@@ -9,7 +9,16 @@
             <div class="title ttle">{{details.title}}</div>
             <div class="cat">{{details.cat}}</div>
             <div class="price pr">${{details.price}}</div>
-            <div class="rate"> <div class="rate rte"><font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /> <font-awesome-icon icon="fa-regular fa-star" /></div></div>
+            <div class="grey">Rating</div>
+            <div class="rte"> 
+                <div class="rating-number">
+                    {{ details.rating }}
+                </div>
+                <div class="level">
+                    <div class="progress description" style="width:70%;"></div>
+                </div>
+                
+            </div>
         </div>
         <div class="des">{{details.des}}</div>
     </div>
@@ -28,6 +37,32 @@ export default {
 </script>
 
 <style scoped>
+
+
+.grey{
+    color:var(--main-dim);
+    font-size:0.7rem;
+    font-weight:bold;
+    margin-top:-0.4rem;
+}
+.rating-number{
+    font-weight:bold;
+    color:var(--main-dim);
+}
+
+.rte{
+    display:flex;
+    align-items:center;
+
+}
+
+.description{
+    background:var(--gradient);
+}
+
+.level{
+    margin-left:-1.8rem;
+}
 
 .img-prev{
     height:12rem;
